@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximiliano Zacarias — Desarrollador Python</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --text-muted: #57534e;
+    --accent: #4338ca;        /* índigo — más singular que azul */
+    --accent-soft: #eef2ff;
+    --border: #e7e5e4;
+    --line: #d6d3d1;
+    --highlight: #d97706;     /* ámbar — el "punto de pausa" */
+    }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* HEADER / HERO */
+        .hero {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px 64px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .hero-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--highlight);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 2.75rem);
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .hero-role {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .hero-intro {
+            font-size: 1.0625rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1e40af;
+        }
+
+        .btn-outline {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg);
+            border-color: var(--line);
+        }
+
+        .btn .material-icons-outlined {
+            font-size: 20px;
+        }
+
+        .scroll-hint {
+            display: block;
+            margin-top: 48px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .scroll-hint:hover {
+            color: var(--accent);
+        }
+
+        /* TIMELINE */
+        .timeline-wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 72px 24px 96px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-title h2 {
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.0625rem;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--line);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -40px;
+            top: 4px;
+            width: 24px;
+            height: 24px;
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-marker .material-icons-outlined {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .timeline-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 28px 32px;
+            box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04);
+        }
+
+        .timeline-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .timeline-card p {
+            color: var(--text-muted);
+            font-size: 0.9875rem;
+            margin-bottom: 18px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 5px 12px;
+            border-radius: 4px;
+        }
+
+        /* FILU CASE STUDY */
+        .case-study {
+            background: var(--text);
+            color: #fafaf9;
+            padding: 80px 24px;
+        }
+
+        .case-study-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .case-study .eyebrow {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #a8a29e;
+            margin-bottom: 12px;
+        }
+
+        .case-study h2 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            color: #fafaf9;
+        }
+
+        .case-study .lead {
+            font-size: 1.0625rem;
+            color: #d6d3d1;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .case-study .lead strong {
+            color: #fafaf9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .feature-card .material-icons-outlined {
+            font-size: 28px;
+            color: #93c5fd;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 0.875rem;
+            color: #a8a29e;
+            line-height: 1.5;
+        }
+
+        .case-study .btn {
+            background: #fafaf9;
+            color: var(--text);
+        }
+
+        .case-study .btn:hover {
+            background: #e7e5e4;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 56px 20px 48px;
+            }
+
+            .timeline-wrap {
+                padding: 56px 20px 72px;
+            }
+
+            .timeline-card {
+                padding: 22px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <p class="hero-label">Presentación profesional</p>
+        <h1>Maximiliano Zacarias</h1>
+        <p class="hero-role">Desarrollador Python</p>
+        <p class="hero-intro">
+            Recorrido de las tecnologías que dominé y los resultados concretos que logré aplicarlas.
+            Pensado para que conozcas mi perfil de forma clara y directa.
+        </p>
+        <div class="hero-actions">
+            <a href="https://www.linkedin.com/in/maximiliano-zacarias" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <span class="material-icons-outlined">link</span>
+                LinkedIn
+            </a>
+            <a href="#trayectoria" class="btn btn-outline">
+                Ver trayectoria
+            </a>
+        </div>
+        <a href="#trayectoria" class="scroll-hint">Conocer mi recorrido ↓</a>
+    </header>
+
+    <main>
+        <section class="timeline-wrap" id="trayectoria">
+            <div class="section-title">
+                <h2>Trayectoria técnica</h2>
+                <p>Cada etapa representa una competencia que desarrollé y que hoy aplico en proyectos reales.</p>
+            </div>
+
+            <div class="timeline">
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">code</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Python como base</h3>
+                        <p>
+                            Fundamento de mi trabajo: código claro, mantenible y orientado a resolver problemas de negocio.
+                            Desde automatización hasta aplicaciones web de alto impacto.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python 3.x</span>
+                            <span class="tech-tag">POO</span>
+                            <span class="tech-tag">Async/Await</span>
+                            <span class="tech-tag">Type Hints</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">web</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Desarrollo web con Django</h3>
+                        <p>
+                            Construcción de aplicaciones robustas y escalables: ORM, autenticación, APIs REST
+                            y arquitectura modular para sistemas con múltiples módulos integrados.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Django 5.x</span>
+                            <span class="tech-tag">Django ORM</span>
+                            <span class="tech-tag">Class-Based Views</span>
+                            <span class="tech-tag">Middleware</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">account_tree</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Diseño y modelado de software</h3>
+                        <p>
+                            Arquitecturas escalables, bases de datos relacionales bien diseñadas
+                            y código alineado con buenas prácticas (SOLID, modularidad, mantenibilidad).
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Diseño de BD</span>
+                            <span class="tech-tag">REST APIs</span>
+                            <span class="tech-tag">Clean Code</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">integration_instructions</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Integración con APIs</h3>
+                        <p>
+                            Conexión con servicios externos: pagos, almacenamiento, correo, notificaciones
+                            y APIs de terceros. Diseño de APIs REST seguras, documentadas y listas para producción.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Integración APIs</span>
+                            <span class="tech-tag">OAuth 2.0</span>
+                            <span class="tech-tag">Webhooks</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">MercadoPago</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">psychology</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Inteligencia artificial y RAG</h3>
+                        <p>
+                            Aplicación de IA en productos reales: sistemas RAG para consultar documentación
+                            y datos propios, y uso responsable de modelos de lenguaje en flujos de negocio.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">IA</span>
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">LLMs</span>
+                            <span class="tech-tag">Embeddings</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">model_training</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Entrenamiento de modelos de ML</h3>
+                        <p>
+                            Preparación de datos, entrenamiento y evaluación de modelos de machine learning
+                            adaptados a necesidades concretas, con foco en resultados medibles.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Entrenamiento de modelos</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">cloud_upload</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Despliegue y arquitectura en la nube</h3>
+                        <p>
+                            Llevar proyectos de desarrollo a producción: contenedores, CI/CD,
+                            servidores, bases de datos en entorno productivo y optimización de rendimiento.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS / Fly.io</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="material-icons-outlined">palette</span>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>Interfaces y experiencia de usuario</h3>
+                        <p>
+                            Frontends responsivos y accesibles que complementan el backend:
+                            HTML, CSS, JavaScript y PWAs con enfoque mobile-first.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5 / CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">PWA</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="case-study" id="filu">
+            <div class="case-study-inner">
+                <p class="eyebrow">Proyecto destacado</p>
+                <h2>Todo esto me permitió crear FILU</h2>
+                <p class="lead">
+                    <strong>FILU</strong> es una Progressive Web App para gestión veterinaria: conecta veterinarias,
+                    petshops, refugios y dueños de mascotas. Desarrollada con Django, desplegada en la nube
+                    y pensada para escalar con miles de usuarios.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="material-icons-outlined">medical_services</span>
+                        <h4>Gestión veterinaria</h4>
+                        <p>Turnos, historias clínicas, internaciones y cirugías.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-icons-outlined">shopping_cart</span>
+                        <h4>E-commerce</h4>
+                        <p>Tienda online con MercadoPago y gestión de pedidos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-icons-outlined">pets</span>
+                        <h4>Refugios</h4>
+                        <p>Adopciones y seguimiento de animales.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-icons-outlined">cloud</span>
+                        <h4>Cloud native</h4>
+                        <p>Alta disponibilidad en entorno productivo.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-icons-outlined">security</span>
+                        <h4>Seguridad</h4>
+                        <p>OAuth 2.0 y protección de datos sensibles.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-icons-outlined">phone_iphone</span>
+                        <h4>PWA instalable</h4>
+                        <p>Experiencia de app nativa en cualquier dispositivo.</p>
+                    </div>
+                </div>
+
+                <a href="https://filu.com.ar" target="_blank" rel="noopener noreferrer" class="btn">
+                    Visitar filu.com.ar
+                    <span class="material-icons-outlined">open_in_new</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <strong>Maximiliano Zacarias</strong> — Desarrollador Python<br>
+            <a href="https://www.linkedin.com/in/maximilianozacariasperfil/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+    </footer>
+
+
+    <script>
+        (function () {
+            const selectors = [
+                '.section-title',
+                '.timeline-item',
+                '.case-study-inner > .eyebrow',
+                '.case-study-inner > h2',
+                '.case-study-inner > .lead',
+                '.feature-card',
+                '.case-study-inner > .btn'
+            ].join(', ');
+        
+            const elements = document.querySelectorAll(selectors);
+            if (!elements.length) return;
+        
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+            if (prefersReduced) {
+                elements.forEach((el) => el.classList.add('is-visible'));
+                return;
+            }
+        
+            elements.forEach((el) => el.classList.add('reveal-on-scroll'));
+        
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    });
+                },
+                {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -40px 0px'
+                }
+            );
+        
+            elements.forEach((el) => observer.observe(el));
+        })();
+        </script>
+
+</body>
+</html>
